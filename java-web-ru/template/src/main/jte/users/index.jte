@@ -1,8 +1,6 @@
 @import exercise.dto.users.UsersPage
-@import exercise.model.User
 @param UsersPage page
 
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,16 +8,22 @@
     <title>Hello Hexlet!</title>
 </head>
 <body>
-<h1>Users</h1>
-@if (page.getUsers().isEmpty())
-    <p>No users</p>
-@else
-    @for(User user : page.getUsers())
-        <div>
-            <h2><a href="/users/${user.getId()}">${user.getFirstName()}</a></h2>
-            <p>${user.getEmail()}</p>
-        </div>
-    @endfor
-@endif
+<div class="mx-auto p-4 py-md-5">
+    <main>
+        <h1>Пользователи</h1>
+        <table class="table table-striped">
+            @for(var user : page.getUsers())
+                <tr>
+                    <td>
+                        ${user.getId()}
+                    </td>
+                    <td>
+                        <a href="/users/${user.getId()}">${user.getFirstName()} ${user.getLastName()}</a>
+                    </td>
+                </tr>
+            @endfor
+        </table>
+    </main>
+</div>
 </body>
 </html>
